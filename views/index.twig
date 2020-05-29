@@ -29,15 +29,16 @@
       <div class="col">
         <div>
           <h3 class="border-bottom-gray" >Work Experience</h3>
-          <ul>
-            {% for job in jobs %}
-              <li class="work-position">
-                <h5>{{ job.title }}</h5>
-                <p>{{ job.months }} months</p>
-                <p>{{ job.description }}</p>
-              </li>
-            {% endfor %}
-          </ul>
+          {% for job in jobs %}
+            <div class="row work-position">
+              <div class="col-3">
+                <img src="{{job.getImage()}}" alt="">
+              </div>
+            </div>
+              <h5>{{ job.title }}</h5>
+              <p>{{ job.getMonths() }} months</p>
+              <p>{{ job.description }}</p>
+          {% endfor %}
         </div>
         <div>
             <h3 class="border-bottom-gray">Projects</h3>

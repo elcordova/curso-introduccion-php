@@ -1,9 +1,10 @@
 <?php
 namespace App\Models;
-
+use App\Traits\HasDefaultJob;
 use Illuminate\Database\Eloquent\Model;
 
 class Job extends Model {
+    use HasDefaultJob;
     protected $table = 'jobs';
 
     public function getDurationAsString() {
