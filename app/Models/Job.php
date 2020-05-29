@@ -2,9 +2,10 @@
 namespace App\Models;
 use App\Traits\HasDefaultJob;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 class Job extends Model {
     use HasDefaultJob;
+    use SoftDeletes;
     protected $table = 'jobs';
 
     public function getDurationAsString() {

@@ -2,9 +2,25 @@
 namespace App\Controllers;
 
 use App\Models\Job;
+use Zend\Diactoros\ServerRequest;
+use Zend\Diactoros\Response\RedirectResponse;
 use Respect\Validation\Validator as v;
 
 class JobsController extends BaseController {
+    public function indexAction() {
+        // $jobs = Job::all(); //get only  with deleted_at null;
+        
+        $jobs = Job::withTrashed()->get(); // all trash inclusive deleted_at
+        return $this->renderHTML('jobs/index.twig',compact('jobs'));
+    }
+
+    public function deleteAction(ServerRequest $request) {
+        $params = $request->getQueryParams();
+        $job = Job::findOrFail($params['id']);
+        $job->delete();
+        return New RedirectResponse('/jobs');
+    }
+
     public function getAddJobAction($request) {
         $responseMessage = null;
 
